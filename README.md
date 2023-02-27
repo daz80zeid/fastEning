@@ -2,7 +2,7 @@
 This project is aimed at creating a platform for sharing informative articles about the applications of Artificial Intelligence in our daily lives. The platform includes a thesaurus section for users to browse related terms and definitions, as well as an admin panel for updating and managing the data.
 This project is a platform for sharing informative articles about the applications of Artificial Intelligence in our daily lives. The platform includes a thesaurus section for users to browse related terms and definitions, as well as an admin panel for updating and managing the data.
 
-###Table of Contents
+### Table of Contents
 Technologies Used
 Features
 Getting Started
@@ -10,7 +10,7 @@ Usage
 Contributing
 License
 
-###Technologies Used
+### Technologies Used
 React
 Typescript
 Tailwind
@@ -18,7 +18,7 @@ TypeORM
 Docker
 PostgreSQL
 Nest.JS
-###Features
+### Features
 User-friendly UI for browsing articles and thesaurus entries.
 Thesaurus section for looking up related terms and definitions.
 Admin panel for managing and updating articles and thesaurus entries.
@@ -36,7 +36,7 @@ Copy code
 ```npm install```
 Start the development server:
 
-###Usage
+### Usage
 To browse articles, use the search bar or navigate to the Articles page.
 To browse thesaurus entries, use the search bar or navigate to the Thesaurus page.
 To access the admin panel, navigate to the Admin page and log in with your credentials.
