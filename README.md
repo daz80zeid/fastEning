@@ -44,5 +44,5 @@ In the admin panel, you can manage and update articles and thesaurus entries.
 Contributing
 Contributions are welcome! If you have any suggestions or would like to report a bug, please open an issue in the repository.
 
-###License
+### License
 This project is licensed under the MIT License. See the LICENSE file for details.

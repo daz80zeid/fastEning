@@ -1,22 +1,16 @@
-import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig} from 'axios';
-import {LocalStorage} from "./localStorage";
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import { LocalStorage } from '../utils/localStorage';
 
 const tokenStorage = new LocalStorage<string>('token');
 
 export class HttpInterceptor {
-    private axiosInstance: AxiosInstance;
+    private static axiosInstance: AxiosInstance = axios.create({
+        baseURL: 'http://localhost:3000/api',
+    });
 
-    constructor() {
-        this.axiosInstance = axios.create({
-            baseURL:  'http://localhost:3000/api',
-        });
-        this._initializeRequestInterceptor();
-        this._initializeResponseInterceptor();
-    }
-
-    private _initializeRequestInterceptor = () => {
-        this.axiosInstance.interceptors.request.use(
-            (config:InternalAxiosRequestConfig) => {
+    private static _initializeRequestInterceptor = () => {
+        HttpInterceptor.axiosInstance.interceptors.request.use(
+            (config: InternalAxiosRequestConfig) => {
                 const token = tokenStorage.get();
                 if (token) {
                     config.headers.Authorization = `Bearer ${token}`;
@@ -29,8 +23,8 @@ export class HttpInterceptor {
         );
     };
 
-    private _initializeResponseInterceptor = () => {
-        this.axiosInstance.interceptors.response.use(
+    private static _initializeResponseInterceptor = () => {
+        HttpInterceptor.axiosInstance.interceptors.response.use(
             (response: AxiosResponse) => {
                 return response.data;
             },
@@ -61,21 +55,27 @@ export class HttpInterceptor {
         );
     };
 
-    public get = (url: string, config?: AxiosRequestConfig) => {
-        return this.axiosInstance.get(url, config);
-    };
 
-    public post = (url: string, data?: any, config?: AxiosRequestConfig) => {
-        return this.axiosInstance.post(url, data, config);
-    };
 
-    public put = (url: string, data?: any, config?: AxiosRequestConfig) => {
-        return this.axiosInstance.put(url, data, config);
-    };
-
-    public delete = (url: string, config?: AxiosRequestConfig) => {
-        return this.axiosInstance.delete(url, config);
-    };
+public static async get<T = unknown>(url: string, config?: AxiosRequestConfig): Promise<T> {
+    const res = await HttpInterceptor.axiosInstance.get(url, config);
+    return res as T;
 }
 
-export default new HttpInterceptor();
+public static async post<T = unknown>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
+    const res = await HttpInterceptor.axiosInstance.post(url, data, config);
+    return res as T;
+}
+
+public static async put<T = unknown>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
+    const res = await HttpInterceptor.axiosInstance.put(url, data, config);
+    return res as T;
+}
+
+public static async delete<T = unknown>(url: string, config?: AxiosRequestConfig): Promise<T> {
+    const res = await HttpInterceptor.axiosInstance.delete(url, config);
+    return res as T;
+}
+}
+
+export default HttpInterceptor;
