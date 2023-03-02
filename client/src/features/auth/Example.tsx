@@ -13,7 +13,7 @@ export const RedirectModal: FC = () => {
         console.log('submit')
     }
     return (
-        <Modal onClose={handleClose} role='student' pageName='Registration'>
+        <Modal onClose={handleClose} role='User' pageName='Registration'>
             <RegistrationForm onSubmit={handleSubmit}/>
         </Modal>
     )
