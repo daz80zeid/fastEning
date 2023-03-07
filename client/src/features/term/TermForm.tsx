@@ -10,7 +10,6 @@ export const TermForm: FC = () => {
         setDescription(newValue)
     };
     const handleSubmit = () => {
-        console.log('1')
     }
     return (
         <div className="flex-grow flex justify-center items-center bg-gray-700">
@@ -18,7 +17,7 @@ export const TermForm: FC = () => {
             <Input type='text' variant='username' label='Term name' value={name} onChange={setName}/>
             <TextArea label='description' value={description} onChange={handleChange}/>
             <Button >
-                Create Term
+               Add Term
             </Button>
         </form>
         </div>

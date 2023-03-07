@@ -1,10 +1,10 @@
 import {IconType} from "react-icons";
 
 export interface ITerm {
-    id: number;
+    _id: string;
     slug: string;
     description: string;
-    title: string;
+    name: string;
     text: string;
     icon: IconType
 }

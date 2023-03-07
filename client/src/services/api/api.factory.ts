@@ -4,7 +4,7 @@ import {ApiClient} from "./api.client";
 
 export class ApiClientFactory {
     constructor(
-        private readonly baseUrl: string,
+        private readonly baseUrl: string | undefined,
         private readonly headers: Headers = {}
     ) {}
 

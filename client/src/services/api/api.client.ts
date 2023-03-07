@@ -7,9 +7,11 @@ import {
 
 import {Headers} from "./api.header.interface";
 
+
+export const API_URL = process.env.REACT_APP_API_URL
 export class ApiClient {
     constructor(
-        private readonly baseUrl: string,
+        private readonly baseUrl: string | undefined,
         private readonly headers: Headers,
         private readonly authToken: string = ""
     ) {}
@@ -20,7 +22,7 @@ export class ApiClient {
             const response = await client.get(endpoint, { signal });
             return response.data;
         } catch (error: any) {
-            this.handleError(error);
+            ApiClient.handleError(error);
         }
     }
 
@@ -30,7 +32,27 @@ export class ApiClient {
             const response = await client.post(endpoint, data, { signal });
             return response.data;
         } catch (error) {
-            this.handleError(error);
+            ApiClient.handleError(error);
+        }
+    }
+
+    public async put(endpoint: string = "", data?: any, signal?: AbortSignal): Promise<any> {
+        try {
+            const client = this.createClient();
+            const response = await client.put(endpoint, data, { signal });
+            return response.data;
+        } catch (error) {
+            ApiClient.handleError(error);
+        }
+    }
+
+    public async delete(endpoint: string = "", params?: any, signal?: AbortSignal): Promise<any> {
+        try {
+            const client = this.createClient(params);
+            const response = await client.delete(endpoint, { signal });
+            return response.data;
+        } catch (error) {
+            ApiClient.handleError(error);
         }
     }
 
@@ -44,7 +66,7 @@ export class ApiClient {
             })
             return response.data;
         } catch (error) {
-            this.handleError(error);
+            ApiClient.handleError(error);
         }
     }
 
@@ -62,7 +84,7 @@ export class ApiClient {
         return axios.create(config);
     }
 
-    private handleError(error: any): never {
+    private static handleError(error: any): never {
         if (!error.response) {
             throw new HttpError(error.message)
         }

@@ -2,13 +2,14 @@ import {IUser} from "./user.interface";
 import {IconType} from "react-icons";
 
 export interface IArticle {
-    id: number;
+    createdAt?: string;
+    _id: string;
     slug: string;
-    title: string;
-    description: string;
+    name: string;
+    description?: string;
+    text?: string;
     icon: IconType;
     body?: string;
-    createdAt?: string;
     updatedAt?: string;
     favoritesCount?: number;
     author?: IUser;

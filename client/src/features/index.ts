@@ -5,7 +5,7 @@ export {AuthorizedHome} from './Home/AuthorizedHome'
 // Auth feature
 export {LoginForm} from './auth/LoginForm'
 export {RegistrationForm} from './auth/RegistrationForm'
-export {RedirectModal} from './auth/Example'
+export {RegistrationModal} from './auth/RegistrationModal'
 // Article feature
 export {Articles} from './article/ArticleList'
 export {ArticleForm} from './article/ArticleForm'

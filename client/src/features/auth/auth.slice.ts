@@ -26,26 +26,28 @@ export const authSlice = createSlice({
                 state.error = null;
             })
             .addCase(register.fulfilled, (state, action) => {
+                console.log(action.payload.user, 'action Register')
                 state.user = action.payload;
                 state.loading = false;
                 state.error = null;
             })
             .addCase(register.rejected, (state, action) => {
                 state.loading = false;
-                state.error = action.error.message ?? "Registration failed";
+                state.error = "Registration failed";
             })
             .addCase(login.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
             .addCase(login.fulfilled, (state, action) => {
+                console.log(action.payload.user, 'action')
                 state.user = action.payload;
                 state.loading = false;
                 state.error = null;
             })
             .addCase(login.rejected, (state, action) => {
                 state.loading = false;
-                state.error = action.error.message ?? "Login failed";
+                state.error =  "Login failed";
             });
     },
 });

@@ -7,11 +7,11 @@ function App() {
 
 
   return (
-        <Container>
             <BrowserRouter>
+                <Container>
                 <Router />
+                </Container>
             </BrowserRouter>
-        </Container>
   );
 }
 
